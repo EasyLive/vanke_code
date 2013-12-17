@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vanke.house.sub.repository.VankeGroupMapper">
+
+	<resultMap type="com.vanke.house.sub.entity.VankeGroup" id="vankeGroupMap">
+		<id column="id" property="id" />
+		<result column="group_name" property="groupName" />
+		<result column="group_desc" property="groupDesc" />
+		<result column="group_state" property="groupState" />
+		<!-- <collection property="vankeUsers" resultMap=""></collection> -->
+	</resultMap>
+
+
+	<insert id="insertVankeGroup" parameterType="com.vanke.house.sub.entity.VankeGroup"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into vanke_group 
+		<trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test="groupName != null">group_name,</if>
+			<if test="groupDesc != null">group_desc,</if>
+			<if test="groupState != null">group_state,</if>
+		</trim>
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			<if test="groupName != null">#{groupName},</if>
+			<if test="groupDesc != null">#{groupDesc},</if>
+			<if test="groupState != null">#{groupState},</if>			
+		</trim>
+		
+	</insert>
+	
+	<select id="selectVankeGroupById" parameterType="java.lang.Integer" resultMap="vankeGroupMap">
+		select * from vanke_group where id=#{groupId}
+	</select>
+	
+</mapper>

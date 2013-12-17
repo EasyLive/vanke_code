@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vanke.house.sub.repository.VankeUserMapper">
+
+	<sql id="base_column">
+		id,username,user_email,user_phone,password,user_state,user_type,user_group_id
+	</sql>
+
+	<resultMap type="com.vanke.house.sub.entity.VankeUser" id="vankeUserMap">
+		<id column="id" property="id" />
+		<result column="username" property="userName" />
+		<result column="password" property="password" />
+		<result column="user_email" property="userEmail"/>
+		<result column="user_state" property="userState" />
+		<result column="user_type" property="userType" />
+		<association property="vankeGroup" column="user_group_id"
+			select="com.vanke.house.sub.service.VankeGroupMapper.selectVankeGroupById">
+		</association>
+	</resultMap>
+
+	<!-- <resultMap type="com.vanke.house.sub.entity.VankeGroup" id="vankeGroupMap">
+		<id column="id" property="id" />
+		<result column="" property="groupName" />
+	</resultMap> -->
+
+	<select id="userLogin" resultMap="vankeUserMap"
+		parameterType="com.vanke.house.sub.entity.VankeUser">
+		select <include refid="base_column"/> from vanke_user where username=#{userName}
+		and password=#{password}
+	</select>
+
+	<select id="selectUserList" resultMap="vankeUserMap"
+		parameterType="com.vanke.house.sub.entity.VankeUser">
+		select
+		<include refid="base_column" />
+		from vanke_user where 1=1
+	</select>
+
+	<insert id="insertUser" parameterType="com.vanke.house.sub.entity.VankeUser"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into vanke_user 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="userName != null">username,</if>
+			<if test="password != null">password,</if>
+			<if test="userEmail != null">user_email,</if>
+			<if test="userPhone != null">user_phone,</if>
+			<if test="groupId != null">user_group_id,</if>
+			<if test="userState != null">user_state,</if>
+			<if test="userType != null">user_type</if>
+		</trim>
+		<trim prefix=" values (" suffix=")" suffixOverrides=",">
+			<if test="userName != null">#{userName},</if>
+			<if test="password != null">#{password},</if>
+			<if test="userEmail != null">#{userEmail},</if>
+			<if test="userPhone != null">#{userPhone},</if>
+			<if test="groupId != null">#{groupId},</if>
+			<if test="userState != null">#{userState},</if>
+			<if test="userType != null">#{userType},</if>
+		</trim>
+		
+		
+	</insert>
+</mapper>

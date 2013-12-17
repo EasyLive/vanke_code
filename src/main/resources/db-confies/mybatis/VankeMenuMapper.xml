@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vanke.house.sub.repository.VankeMenuMapper">
+
+	<sql id="menu_column">
+		menu_title,menu_url,isShow,menu_desc,menu_doc
+	</sql>
+
+	<resultMap type="com.vanke.house.sub.entity.VankeMenus" id="vankeMenusBaseMap">
+		<id property="id" column="id" />
+		<result property="menuTitle" column="menu_title" />
+		<result property="menuUrl" column="menu_url" />
+		<result property="menuDoc" column="menu_doc" />
+		<result property="isShow" column="isShow" />
+		<result property="menuDesc" column="menu_desc" />
+	</resultMap>
+
+	<resultMap type="com.vanke.house.sub.entity.VankeMenus" id="vankeMenusMap">
+		<id property="id" column="id" />
+		<result property="menuTitle" column="menu_title" />
+		<result property="menuUrl" column="menu_url" />
+		<result property="menuDoc" column="menu_doc" />
+		<result property="isShow" column="isShow" />
+		<result property="menuDesc" column="menu_desc" />
+		<collection property="childrenMenus" column="menuDoc" select="selectChildrenMenus"/>
+	</resultMap>
+
+	<!-- 查询子菜单信息 -->
+	<select id="selectChildrenMenus" parameterType="java.lang.Integer"
+		resultMap="vankeMenusBaseMap">
+		select
+		<include refid="menu_column" />
+		from vanke_menus
+		where menu_doc = #{menuDoc}
+	</select>
+	
+	<select id="selectMenus" parameterType="com.vanke.house.sub.entity.VankeMenus" resultMap="vankeMenusBaseMap">
+		select * from vanke_menu where 1=1 
+		<if test="menuTitle != null">and menu_title=#{menuTitle}</if>
+		<if test="menuUrl != null">and menuUrl=#{menu_url}</if>
+		<if test="menuDoc != null">and menuDoc=#{menu_doc}</if>
+		<if test="isShow != null">and isShow=#{isShow}</if>		
+	</select>
+
+	<!-- 增加新菜单 -->
+	<insert id="insertMenus" parameterType="com.vanke.house.sub.entity.VankeMenus"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into vanke_menus
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="menuTitle != null">menu_title,</if>
+			<if test="menuUrl != null">menu_url,</if>
+			<if test="menuDoc != null">menu_doc,</if>
+			<if test="isShow != null">isShow,</if>
+			<if test="menuDesc != null">menu_desc,</if>
+		</trim>
+		<trim prefix=" valuse (" suffix=")" suffixOverrides=",">
+			<if test="menuTitle != null">${menuTitle}</if>
+			<if test="menuUrl != null">${menuUrl}</if>
+			<if test="menuDoc != null">${menuDoc}</if>
+			<if test="isShow != null">${isShow}</if>
+			<if test="menuDesc != null">${menuDesc}</if>
+		</trim>
+	</insert>
+
+</mapper> 
+ 

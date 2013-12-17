@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Untitled Document</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="../../static/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="../../static/bootstrap/css/bootstrap-responsive.min.css"/>
+<link rel="stylesheet" type="text/css" href="../../static/style/default.css" />
+<script type="text/javascript" src="../../static/jquery/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="../../static/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../static/jquery/jquery.placeholder.1.3.min.js"></script>
+</head>
+
+<body>
+<div id="header"></div>
+<div id="content">
+	<div class="container">
+    	<div class="row">
+           <div class="span2">
+           	<div class="accordion" id="submenu">
+		<div class="accordion-group">
+			<div class="accordion-heading">
+				<a class="accordion-toggle" data-toggle="collapse"
+					data-parent="#submenu" href="#collapse1"> 项目管理</a>
+			</div>
+			<div class="accordion-body collapse in" id="collapse1">
+				<ul>
+					<li><a href="content.html" target="contentFrame">所有项目</a></li>
+                    <li><a href="../views/proc/proc_new.html" target="contentFrame">添加项目</a></li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="accordion-group">
+			<div class="accordion-heading">
+				<a class="accordion-toggle" data-toggle="collapse"
+					data-parent="#submenu" href="#collapse2">楼盘管理</a>
+			</div>
+			<div class="accordion-body collapse" id="collapse2">
+				<ul>
+					<li><a href="../views/content.html" target="contentFrame">所有楼盘信息</a></li>
+					<li><a href="##">新增楼盘信息</a></li>
+					
+				</ul>
+			</div>
+		</div>
+
+		<div class="accordion-group">
+			<div class="accordion-heading">
+				<a class="accordion-toggle" data-toggle="collapse"
+					data-parent="#submenu" href="#collapse3">认购管理</a>
+			</div>
+			<div class="accordion-body collapse" id="collapse3">
+				<ul>
+					<li><a href="##">认购信息</a></li>
+					<li><a href="##">代办信息</a></li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="accordion-group">
+			<div class="accordion-heading">
+				<a class="accordion-toggle" data-toggle="collapse"
+					data-parent="#submenu" href="#collapse4">人员管理</a>
+			</div>
+			<div class="accordion-body collapse" id="collapse4">
+				<ul>
+					<li><a href="##">权限管理</a></li>
+					<li><a href="#">角色管理</a></li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="accordion-group">
+			<div class="accordion-heading">
+				<a class="accordion-toggle" data-toggle="collapse"
+					data-parent="#submenu" href="#collapse5">系统管理
+			</div>
+			<div class="accordion-body collapse" id="collapse5">
+				<ul>
+					<li><a href="##">操作日志</a></li>
+					<li><a href="##">角色管理</a></li>
+					</ul>
+			</div>
+		</div>
+
+	</div>
+           </div>
+            <div class="span10" id="content">
+            	
+                <div>
+                	  <iframe width="1200" height="500px" scrolling="auto" frameborder="0" name="contentFrame" id="contentFrame" src=""/>
+                  
+                </div>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="footer"></div>
+<script defer>
+//$("#contentFrame").load(function(){
+var mainheight = $("#contentFrame").contents().find("body").height()+30;
+$(this).height(mainheight);
+alert($("#contentFrame").contents());
+//}); 
+</script>
+</body>
+
+<script type="text/javascript">
+<!--
+$.Placeholder.init(); 
+//-->
+$(function(){
+	alert('abc');
+	$("#contentFrame").load(function(){
+var mainheight = $(this).contents().find("body").height()+30;
+alert(mainheight);
+$(this).height(mainheight);
+}); 	
+	});
+
+</script>
+
+</html>

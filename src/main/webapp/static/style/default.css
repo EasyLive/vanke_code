@@ -1,0 +1,76 @@
+/* 全局 */
+body{margin-top:20px;}
+.hide {	display: none;}
+input{height: 28px;}
+
+/* 左侧导航 */
+.menu_head{ background-color:#6CC; color:#FFF;}
+
+/* 菜单导航 */
+#submenu a {
+	text-decoration: none;
+	text-align: center;
+}
+
+#submenu ul {
+	margin:0px;
+	padding:0px;
+	list-style:none;
+	
+	
+}
+#submenu ul li{
+	clear:both;
+	line-height:12px;
+	padding:5px;
+	color:#FFF;
+	}
+#submenu ul li * {color:#666;}
+.active{
+		background-color:#ccc;
+	}
+#submenu ul li:hover{background-color:#ccc;}
+
+/* 登录页 */
+.form-login {
+	max-width: 300px;
+	padding: 19px 29px 29px;
+	background-color: #fff;
+	border: 1px solid #e5e5e5;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+	-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+	box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+	margin-top: -200px;
+	margin-left: -200px;
+	position: absolute;
+	left: 50%;
+	top: 60%;
+	filter: alpha(opacity = 70);
+	opacity: 0.70;
+}
+
+/* 头部样式 */
+#head {
+	margin: 20px 0 0;
+}
+
+/* 底部样式 */
+#footer {
+	text-align: center;
+	padding: 15px 0 0;
+	margin-top: 15px;
+	
+}
+
+
+/* tabel */
+.table th,.table td {
+	text-align: center;
+}
+
+.table_title {
+	background-color: #C4E1FF;
+}

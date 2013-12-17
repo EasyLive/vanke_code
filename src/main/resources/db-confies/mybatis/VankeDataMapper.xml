@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.vanke.house.sub.repository.VankeDataMapper">
+ 
+ <sql id="base_columns">
+ 	id,dataTypeName,dataTypeId,dataTitle,isShow
+ </sql>
+ <resultMap type="com.vanke.house.sub.entity.VankeData" id="vankeDataBaseMap">
+ 	<id property="id" column=""/>
+ 	<result property="dataTypeName" column="dataTypeName"/>
+ 	<result property="dataTypeId" column="dataTypeId"/>
+ 	<result property="dataTitle" column="dataTitle"/>
+ 	<result property="isShow" column="isShow"/>
+ </resultMap>
+ 
+ <insert id="addVankeData" parameterType="com.vanke.house.sub.entity.VankeData">
+ 	insert into vanke_data (dataTypeName,dataTypeId,dataTitle,isShow)
+ 	values (#{dataTypeName},#{dataTypeId},#{dataTitle},#{isShow})
+ </insert>
+ 
+ <select id="selectData" parameterType="com.vanke.house.sub.entity.VankeData">
+ 	select <include refid="base_columns"/> from vanke_data where 1=1
+ 	<if test="dataTypeName != null">and dataTypeName=#{dataTypeName}</if>
+ 	<if test="dataTypeId != null">and dataTypeId=#{dataTypeName}</if>
+ 	<if test="dataTitle != null">and dataTitle=#{dataTypeName}</if>
+ 	<if test="isShow != null">and isShow=#{dataTypeName}</if>
+ </select>
+ 
+ </mapper>

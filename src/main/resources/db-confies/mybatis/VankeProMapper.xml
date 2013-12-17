@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vanke.house.sub.repository.VankeProMapper">
+
+	<resultMap type="com.vanke.house.sub.entity.VankeProTeam" id="vankeProTeamMap">
+		<id column="id" property="id"/>
+		<result column="group_id" property="groupId"/>
+		<result column="user_id" property="userId"/>
+		<association property="vankeUsers" column="user_id" javaType="com.vanke.house.sub.entity.VankeUser"/>
+		<association property="vankePro" column="group_id" javaType="com.vanke.house.sub.entity.VankePro"/>
+	</resultMap>
+
+	<select id="selectProTeamByProId" parameterType="java.lang.Integer"
+		resultMap="vankeProTeamMap">
+		select * from vanke_pro_team where pro_id=#{proId}
+	</select>
+	
+	<insert id="insertProTeam" parameterType="com.vanke.house.sub.entity.VankeProTeam">
+		insert vanke_pro_team (pro_id,user_id) values (#{proId},#{userId})
+	</insert>
+	
+	<delete id="removeProTeam" parameterType="java.lang.Integer">
+		delete from vanke_pro_team where id = #{id}
+	</delete>
+</mapper>
