@@ -1,0 +1,13 @@
+### IDEA ###
+.idea/
+target/
+*.iml
+### Eclipse ###
+.classpath
+.project
+.settings
+out/
+bin/
+*.db
+### OS ###
+.DS_Store
